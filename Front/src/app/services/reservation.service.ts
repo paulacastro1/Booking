@@ -2,6 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ReservationModel } from '../models/Reservation.Model';
 import { BookingModel } from '../models/Booking.Model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,9 +22,8 @@ export class ReservationService {
       console.log(res)
     })
   }
-  public deleteReservation(id: string){
-    console.log(`${this.URL}/${id}`);
-    return this.http.delete(`${this.URL}/${id}`);
+  public deleteReservation(id: string): Observable<void>{
+    return this.http.delete<void>(`${this.URL}/${id}`);
   }
   
   public saveReservation(data: ReservationModel){
@@ -31,6 +31,9 @@ export class ReservationService {
     this.http.post<any>(`${this.URL}`, data).subscribe((res) => {
       console.log("Booked succesfully.")
     })
+  }
+  public listReservations(client_id: string ){
+    return this.http.get(`${this.URL}/user/${client_id}`);
   }
 
 }

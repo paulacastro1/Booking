@@ -23,7 +23,6 @@ export class HotelsComponent {
       },
       (error) => {
         console.error('Error deleting hotel:', error);
-        // Handle the error or show a proper error message to the user.
       }
     );
   }

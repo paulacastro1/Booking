@@ -2,6 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HotelModel } from '../models/Hotel.Model';
 import { AvailabilityModel } from '../models/Availability.Model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,8 @@ export class HotelService {
     console.log("Hotel created.")
     })
   }
-  public deleteHotelById(id: string){
-    return this.http.delete(`${this.URL}/hotel/${id}`);
+  deleteHotelById(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.URL}/hotel/${id}`);
   }
   public updateHotel(data: HotelModel) {
     console.log(data);

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public interface ReservationService {
     public ArrayList<ReservationDTO> getReservation();
     public ReservationDTO saveReservation(ReservationDTO reservation);
+    public ArrayList<ReservationDTO> listReservations(Long client_id);
     public ReservationDTO getReservationById(Long reservation_id);
     public ReservationDTO updateReservationById(ReservationDTO request, Long reservation_id);
     public Boolean deleteReservation(Long reservation_id);

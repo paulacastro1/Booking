@@ -26,8 +26,13 @@ public class ReservationController  {
         return this.reservationService.saveReservation(reservation);
     }
 
+    @GetMapping("/user/{client_id}")
+    public ArrayList<ReservationDTO> listReservations(@PathVariable ("client_id")  Long client_id){
+        return this.reservationService.listReservations(client_id);
+    }
+
     @GetMapping(path= "/{reservation_id}")
-    public ReservationDTO getReservationById(@PathVariable Long reservation_id){
+    public ReservationDTO getReservationById(@PathVariable  Long reservation_id){
         return this.reservationService.getReservationById(reservation_id);
     }
 

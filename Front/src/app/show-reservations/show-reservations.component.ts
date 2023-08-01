@@ -12,7 +12,9 @@ export class ShowReservationsComponent {
   public aux: any;
 
   constructor(private service: ReservationService, private hotelService: HotelService){
-    this.service.getReservations().subscribe((reservation)=>{
+    let client = localStorage.getItem('user');
+    if(client){
+      this.service.listReservations(client).subscribe((reservation)=>{
       this.aux = reservation;
       console.log(reservation);
       this.aux.map((ans: any)=> {
@@ -23,7 +25,8 @@ export class ShowReservationsComponent {
           console.log(this.reservations);
         })
       })   
-    });
+    });}
+      
   }
   public deleteReservation(id:string){
     this.service.deleteReservation(id).subscribe(

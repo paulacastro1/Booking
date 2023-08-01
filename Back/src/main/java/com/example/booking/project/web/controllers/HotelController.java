@@ -23,7 +23,6 @@ public class HotelController {
 
     @PostMapping("/availability")
     public ArrayList<HotelDTO> showAvailability(@RequestBody AvailabilityDTO available) {
-        System.out.println("esto no funciona");
         return this.hotelService.showAvailability(available);
     }
 
@@ -43,12 +42,7 @@ public class HotelController {
     }
 
     @DeleteMapping(path = "/{hotel_id}")
-    public String deleteHotelById(@PathVariable("hotel_id") Long hotel_id) {
+    public void deleteHotelById(@PathVariable("hotel_id") Long hotel_id) {
         boolean ok = this.hotelService.deleteHotel(hotel_id);
-        if (ok) {
-            return ("Hotel " + hotel_id + " deleted.");
-        } else {
-            return ("Couldn't complete deletion.");
-        }
-    }
+}
 }

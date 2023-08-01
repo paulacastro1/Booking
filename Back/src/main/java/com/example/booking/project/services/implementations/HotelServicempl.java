@@ -97,8 +97,11 @@ public class HotelServicempl implements HotelService {
     public Boolean deleteHotel(Long hotel_id){
         try {
             hotelRepository.deleteById(hotel_id);
-            return true;
+            System.out.println("eliminado");
+        return true;
         }catch(Exception e){
+            System.out.println(e);
+            System.out.println("no se puede");
             return false;
         }
 

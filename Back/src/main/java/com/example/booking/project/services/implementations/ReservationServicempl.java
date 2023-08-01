@@ -1,9 +1,11 @@
 package com.example.booking.project.services.implementations;
 
+import com.example.booking.project.models.entities.HotelModel;
 import com.example.booking.project.models.entities.ReservationModel;
 import com.example.booking.project.repositories.IReservationRepository;
 import com.example.booking.project.services.interfaces.ReservationService;
 import com.example.booking.project.web.dto.BookingDTO;
+import com.example.booking.project.web.dto.HotelDTO;
 import com.example.booking.project.web.dto.ReservationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -42,6 +44,15 @@ public class ReservationServicempl implements ReservationService {
                 .no_guests(reservation.getNo_guests())
                 .build();
         return reservationDTO;
+    }
+    public ArrayList<ReservationDTO> listReservations(Long client_id){
+        ArrayList<ReservationModel> bookingsModel = reservationRepository.showReservations(client_id);
+        ArrayList<ReservationDTO> bookingsDTO = new ArrayList<>();
+        for(int i=0; i< bookingsModel.size(); i++){
+            bookingsDTO.add(this.MapModeltoDTO(bookingsModel.get(i)));
+        }
+        return bookingsDTO;
+
     }
     @Override
     public ArrayList<ReservationDTO> getReservation(){
@@ -83,9 +94,12 @@ public class ReservationServicempl implements ReservationService {
     @Override
     public Boolean deleteReservation(Long reservation_id){
         try {
+            System.out.println(("reserva eliminada"));
             reservationRepository.deleteById(reservation_id);
             return true;
         }catch(Exception e){
+            System.out.println(e);
+            System.out.println("no se puede borrar reserva");
             return false;
         }
 
