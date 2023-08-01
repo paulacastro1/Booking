@@ -16,7 +16,6 @@ import { ShowReservationsComponent } from './show-reservations/show-reservations
 import { HotelsComponent } from './hotels/hotels.component';
 import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
 import { ReservationsComponent } from './reservations/reservations.component';
-import { EditReservationComponent } from './edit-reservation/edit-reservation.component';
 
 const appRoute: Routes = [
   {path:'', component: HomeComponent},
@@ -43,8 +42,7 @@ const appRoute: Routes = [
     ShowReservationsComponent,
     HotelsComponent,
     EditHotelComponent,
-    ReservationsComponent,
-    EditReservationComponent
+    ReservationsComponent
   ],
   imports: [
     BrowserModule,
