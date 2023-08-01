@@ -20,7 +20,7 @@ public interface IHotelRepository extends JpaRepository<HotelModel, Long> {
             "    WHERE ?1 BETWEEN start_date AND end_date OR ?2 BETWEEN start_date AND end_date \n" +
             "    GROUP BY hotel_id\n" +
             ") r ON h.hotel_id = r.hotel_id \n" +
-            "WHERE (h.no_of_rooms - COALESCE(r.total_reserved_rooms, 0)) >= ?3 \n" +
+            "WHERE (h.capacity - COALESCE(r.total_reserved_rooms, 0)) >= ?3 \n" +
             "  AND (h.max_reservations - COALESCE(r.total_no_guests, 0)) >= ?4 \n" +
             "  AND h.price BETWEEN ?5 AND ?6",
             nativeQuery = true)

@@ -21,11 +21,6 @@ public class ReservationController  {
         return this.reservationService.getReservation();
     }
 
-    @PostMapping("/{check-reservation}")
-    public Boolean checkReservation(@RequestBody BookingDTO booking) {
-        return this.reservationService.checkReservation(booking);
-    }
-
     @PostMapping
     public ReservationDTO saveReservation(@RequestBody ReservationDTO reservation) {
         return this.reservationService.saveReservation(reservation);

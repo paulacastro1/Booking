@@ -81,7 +81,6 @@ public class HotelServicempl implements HotelService {
     public HotelDTO updateHotelById(HotelDTO request, Long hotel_id){
         HotelModel hotel = hotelRepository.findById(hotel_id).get();
 
-        hotel.setHotel_name(request.getHotel_name());
         hotel.setMax_reservations(request.getMax_reservations());
         hotel.setPhone_number(request.getPhone_number());
         hotel.setEmail(request.getEmail());

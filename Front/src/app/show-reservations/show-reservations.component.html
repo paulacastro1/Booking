@@ -8,14 +8,18 @@
     <div class="col-md-8">
       <div class="card-body">
         <h5 class="card-title">{{reservation.hotelName}}</h5>
-          <p class="card-text">Arrival Date: {{reservation.start_date}}
-          </p> 
+          <p class="card-text">Arrival Date: {{reservation.start_date}}</p> 
           <p class="card-text">Departure Date: {{reservation.end_date}}</p>
           <p class="card-text">Number of Guests: {{reservation.no_guests}}</p>
           <p class="card-text">Reserved rooms: {{reservation.reserved_rooms}}</p>
-          <a href="/book?hotel_id={{reservation.hotel_id}}&start_date={{reservation.start_date}}&end_date={{reservation.end_date}}" class="btn btn-outline-dark btn-lg px-2">
-            <small class="text-sm">Manage Reservation</small>
+          <div class="d-flex align-items-center text-sm">
+          <a href="/book?hotel_id={{reservation.hotel_id}}&start_date={{reservation.start_date}}&end_date={{reservation.end_date}}&rooms={{reservation.reserved_rooms}}&guests={{reservation.no_guests}}" class="btn btn-outline-dark btn-lg px-2 mr-2">
+            <div class="text-sm">Manage Reservation</div>
           </a>
+          <!-- <div class="d-flex justify-content-center">
+            <button class="btn btn-outline-dark btn-lg px-2 text-sm" (click)="deleteReservation(reservation.reservation_id)">Delete</button>
+      </div> -->
+      </div>
       </div>
     </div>
   </div>

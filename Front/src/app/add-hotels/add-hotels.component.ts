@@ -18,7 +18,7 @@ export class AddHotelsComponent {
   onSubmit(): void{
     console.log(this.hotel);
     this.hotelService.saveHotel(this.hotel);
-    this.router.navigate(['/hotels']);
+    this.router.navigate(['/hotels']); 
   }
 
 }

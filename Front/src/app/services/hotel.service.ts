@@ -25,6 +25,9 @@ export class HotelService {
     console.log("Hotel created.")
     })
   }
+  public deleteHotelById(id: string){
+    return this.http.delete(`${this.URL}/hotel/${id}`);
+  }
   public updateHotel(data: HotelModel) {
     console.log(data);
 

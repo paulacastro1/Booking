@@ -22,12 +22,21 @@ export class ShowReservationsComponent {
           this.reservations.push(ans);
           console.log(this.reservations);
         })
-      })
-      
-      
-      
+      })   
     });
   }
-  ngOnInit(): void{}
+  public deleteReservation(id:string){
+    this.service.deleteReservation(id).subscribe(
+      () => {
+        console.log('Hotel deleted successfully.');
+        window.location.reload();
+      },
+      (error) => {
+        console.error('Error deleting hotel:', error);
+      }
+    );
+    window.location.reload();
+  }
+  
 
 }

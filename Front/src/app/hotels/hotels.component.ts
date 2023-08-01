@@ -15,5 +15,17 @@ export class HotelsComponent {
       console.log(this.hotels);
     });
   }
+  public deleteHotelById(id: string) {
+    this.service.deleteHotelById(id).subscribe(
+      () => {
+        console.log('Hotel deleted successfully.');
+        window.location.reload();
+      },
+      (error) => {
+        console.error('Error deleting hotel:', error);
+        // Handle the error or show a proper error message to the user.
+      }
+    );
+  }
   ngOnInit(): void{}
 }

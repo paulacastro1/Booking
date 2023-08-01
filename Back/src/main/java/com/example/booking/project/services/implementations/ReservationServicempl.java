@@ -43,16 +43,6 @@ public class ReservationServicempl implements ReservationService {
                 .build();
         return reservationDTO;
     }
-    public Boolean checkReservation(BookingDTO booking) {
-        int reserved_rooms = booking.getReserved_rooms();
-        int no_guests = booking.getNo_guests();
-        LocalDate start_date = booking.getStart_date();
-        LocalDate end_date = booking.getEnd_date();
-        Long hotel_id = booking.getHotel_id();
-        Long client_id = booking.getClient_id();
-
-        return reservationRepository.canBookReservation(reserved_rooms, no_guests, start_date, end_date, hotel_id, client_id);
-    }
     @Override
     public ArrayList<ReservationDTO> getReservation(){
         ArrayList<ReservationModel> reservations = (ArrayList<ReservationModel>)  reservationRepository.findAll();
@@ -80,8 +70,6 @@ public class ReservationServicempl implements ReservationService {
     public ReservationDTO updateReservationById(ReservationDTO request, Long reservation_id){
         ReservationModel reservation = reservationRepository.findById(reservation_id).get();
 
-        reservation.setHotel_id(request.getHotel_id());
-        reservation.setClient_id(request.getClient_id());
         reservation.setStart_date(request.getStart_date());
         reservation.setStart_date(request.getEnd_date());
         reservation.setReserved_rooms(request.getReserved_rooms());

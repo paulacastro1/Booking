@@ -23,6 +23,7 @@ public class HotelController {
 
     @PostMapping("/availability")
     public ArrayList<HotelDTO> showAvailability(@RequestBody AvailabilityDTO available) {
+        System.out.println("esto no funciona");
         return this.hotelService.showAvailability(available);
     }
 

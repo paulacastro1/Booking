@@ -21,9 +21,13 @@ export class ReservationService {
       console.log(res)
     })
   }
+  public deleteReservation(id: string){
+    console.log(`${this.URL}/${id}`);
+    return this.http.delete(`${this.URL}/${id}`);
+  }
+  
   public saveReservation(data: ReservationModel){
     console.log(data);
-    
     this.http.post<any>(`${this.URL}`, data).subscribe((res) => {
       console.log("Booked succesfully.")
     })

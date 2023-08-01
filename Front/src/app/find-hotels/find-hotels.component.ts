@@ -17,8 +17,6 @@ export class FindHotelsComponent {
     this.availability = new AvailabilityModel;
     this.selectedPriceRange = '';
     this.getHotels();
-    localStorage.removeItem('desired_rooms');
-    localStorage.removeItem('desired_guests');
   }
     
 
@@ -37,10 +35,6 @@ export class FindHotelsComponent {
       console.log(this.hotels);
     });
     
-    localStorage.setItem('desired_rooms',JSON.stringify(this.availability.desired_rooms));
-    localStorage.setItem('desired_guests',JSON.stringify(this.availability.desired_guests));
-    
-    // this.router.navigate(['/find-hotel']);
   }
 
   private getHotels() {

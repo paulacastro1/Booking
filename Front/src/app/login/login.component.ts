@@ -20,7 +20,7 @@ export class LoginComponent {
     if(await this.authService.login(this.username, this.password)){
       console.log("You're logged in.")
       let root_user = localStorage.getItem('root');
-      if (root_user) this.router.navigate(['/add-hotel']);
+      if (root_user) this.router.navigate(['/hotels']);
       else this.router.navigate(['/find-hotel']);
     }
     else{
