@@ -1,0 +1,8 @@
+@media (max-width: 768px) {
+    .short-select {
+      width: 80px;
+    }
+  }
+  .btn-smaller-text {
+    font-size: 18px;
+  }

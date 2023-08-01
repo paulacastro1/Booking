@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+  <div class="container py-5">
+  <div *ngFor="let reservation of reservations" class="card mb-6 md-10" style="max-width: 1000px;">
+    <div class="row no-gutters">
+      <div class="col-md-4 d-flex align-items-center justify-content-center">
+        <img src={{reservation.hotelImg}} class="img-fluid" style="max-height: 600px;">
+      </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{reservation.hotelName}}</h5>
+          <p class="card-text">Arrival Date: {{reservation.start_date}}
+          </p> 
+          <p class="card-text">Departure Date: {{reservation.end_date}}</p>
+          <p class="card-text">Number of Guests: {{reservation.no_guests}}</p>
+          <p class="card-text">Reserved rooms: {{reservation.reserved_rooms}}</p>
+          <a href="/book?hotel_id={{reservation.hotel_id}}&start_date={{reservation.start_date}}&end_date={{reservation.end_date}}" class="btn btn-outline-dark btn-lg px-2">
+            <small class="text-sm">Manage Reservation</small>
+          </a>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+          

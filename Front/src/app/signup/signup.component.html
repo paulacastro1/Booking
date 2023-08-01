@@ -1,0 +1,53 @@
+<app-navbar></app-navbar>
+<div class="container py-5 h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="card bg-light text-black" style="border-radius: 1rem;">
+        <div class="card-body p-5 text-center">
+          <form (ngSubmit)="onSubmit()">
+            <div class="text-center">
+              <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Create an account</h5>
+            </div>
+
+              <div class="form-outline mb-4">
+                <input type="text" class="form-control form-control-lg" id="client_id" name="client_id" [(ngModel)]="user.client_id" required>
+                <label class="form-label" for="client_id">ID Number</label>
+                <small class="form-text text-muted"> This will be your username.</small>
+              </div>
+
+  
+              <div class="form-outline mb-4">
+                <input type="text" class="form-control form-control-lg" id="id_type" name="id_type" [(ngModel)]="user.id_type" required>
+                <label class="form-label" for="id_type">Type of ID</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="text" class="form-control form-control-lg" id="client_name" name="client_name" [(ngModel)]="user.client_name" required>
+                <label class="form-label" for="client_name">Full Name</label>
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="text" class="form-control form-control-lg" id="cellphone" name="cellphone" [(ngModel)]="user.cellphone" required>
+                <label class="form-label" for="cellphone">Cellphone</label>
+              </div>
+  
+              <div class="form-outline mb-4">
+                <input type="password" class="form-control form-control-lg" id="password" name="password" [(ngModel)]="user.password" required>
+                <label class="form-label" for="password">Password</label>
+              </div>
+  
+              <div class="form-outline mb-4">
+                <input type="password" class="form-control form-control-lg" id="confirmPassword" name="confirmPassword" required>
+                <label class="form-label" for="confirmPassword">Confirm Password</label>
+              </div>
+  
+              <div class="text-center pt-1 mb-4">
+                <button class="btn btn-outline-dark btn-lg px-5" type="submit">Sign Up</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

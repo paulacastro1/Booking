@@ -1,0 +1,51 @@
+<app-navbar></app-navbar>
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-10">
+        <div class="card bg-light text-black" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            <form (ngSubmit)="onSubmit()">
+              <div class="text-center">
+                <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Edit Hotel</h5>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" id="hotel_id" name="hotel_id" [(ngModel)]="hotel.hotel_id"  readonly>
+                <label class="form-label" for="hotel_id">NIT</label>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="hotel_name" name="hotel_name" [(ngModel)]="hotel.hotel_name"  readonly>
+                <label class="form-label" for="hotel_name">Hotel Name</label>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" id="max_reservations" name="max_reservations" [(ngModel)]="hotel.max_reservations" required>
+                <label class="form-label" for="max_reservations">Max Reservations</label>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="phone_number" name="phone_number" [(ngModel)]="hotel.phone_number" required>
+                <label class="form-label" for="phone_number">Phone Number</label>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" name="email" [(ngModel)]="hotel.email" required>
+                <label class="form-label" for="email">Email</label>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" id="capacity" name="capacity" [(ngModel)]="hotel.capacity" required>
+                <label class="form-label" for="capacity">Number of Rooms</label>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="img_url" name="img_url" [(ngModel)]="hotel.img_url" required>
+                <label class="form-label" for="img_url">Image URL</label>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="price" name="price" [(ngModel)]="hotel.price" required>
+                <label class="form-label" for="price">Price per night</label>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-outline-dark btn-lg px-5">Save</button>
+           </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

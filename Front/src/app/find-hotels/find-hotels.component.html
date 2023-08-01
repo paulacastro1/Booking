@@ -1,0 +1,71 @@
+<app-navbar></app-navbar>
+<body>
+  <section style="background-color: #eee;">
+    <div class="container py-5">
+      <form (ngSubmit)="onSubmit()">
+        <div class="row mb-4">
+          <div class="col-md-3">
+            <label for="start_date" class="form-label">Arrival Date:</label>
+            <input type="date" class="form-control form-control-lg" id="start_date" name="start_date" [(ngModel)]="availability.start_date" required>
+          </div>
+          <div class="col-md-3">
+            <label for="end_date" class="form-label">Departure Date:</label>
+            <input type="date" class="form-control form-control-lg" id="end_date" name="end_date" [(ngModel)]="availability.end_date" required>
+          </div>
+          <div class="col-md-2">
+            <label for="priceRange" class="form-label">Price Range:</label>
+            <select id="priceRange" class="form-select" name="priceRange" [(ngModel)]="selectedPriceRange" required>
+              <option value="0-200"> $100 - $200</option>
+              <option value="200-400">$200 - $400</option>
+              <option value="400-600">$400 - $600</option>
+              <option value="600-2000">$600+</option>
+            </select>
+          </div>
+          <div class="col-md-1">
+            <label for="desired_rooms" class="form-label">Rooms:</label>
+            <input type="number" class="form-control form-control-lg" id="desired_rooms" name="desired_rooms" [(ngModel)]="availability.desired_rooms" required>
+          </div>
+          <div class="col-md-1">
+            <label for="desired_guests" class="form-label">Guests:</label>
+            <input type="number" class="form-control form-control-lg" id="desired_guests" name="desired_guests" [(ngModel)]="availability.desired_guests" required>
+          </div>
+          <div class="col-md-2 mt-4">
+            <button type="submit" class="btn btn-outline-dark btn-lg px-2 btn-smaller-text">Apply Filters</button>
+          </div>
+        </div>
+      </form>
+        <div class="row">
+            <div *ngFor="let hotel of hotels" class="col-md-4 mb-5">
+              <div class="card">
+                <img src="{{hotel.img_url}}"
+                  class="card-img-top" alt="Laptop" />
+                <div class="card-body">
+                  <h5 class="mb-0">{{hotel.hotel_name}}</h5>
+                  <h5 class="text-dark mb-0">${{hotel.price}}
+                  </h5>
+                  <p class="small"><a href="#!" class="text-muted">Per night</a></p>
+                  <div class="d-flex justify-content-between mb-2">
+                    <div class="ms-auto text-warning">
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                    </div>
+                  </div>
+                  <div class="d-grid mt-3">
+                    <a href="/book?hotel_id={{hotel.hotel_id}}&start_date={{availability.start_date}}&end_date={{availability.end_date}}" class="btn btn-outline-dark">Book Now</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="card">
+            </div>
+          </div>
+        </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
