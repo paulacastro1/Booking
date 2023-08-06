@@ -35,6 +35,9 @@
               <div class="d-flex justify-content-center">
                   <button type="submit" class="btn btn-outline-dark btn-lg px-5">Book</button>
             </div>
+            <div *ngIf = "flag" class="text-danger mt-3">
+              {{flag}}
+            </div>
         </form>
       </div>
     </div>

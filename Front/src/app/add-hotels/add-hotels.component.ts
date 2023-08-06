@@ -15,10 +15,9 @@ export class AddHotelsComponent {
     this.hotel = new HotelModel();
   }
 
-  onSubmit(): void{
+  async onSubmit(){
     console.log(this.hotel);
-    this.hotelService.saveHotel(this.hotel);
-    this.router.navigate(['/hotels']); 
+    await this.hotelService.saveHotel(this.hotel).toPromise();
+    this.router.navigate(["/hotels"])
   }
-
 }

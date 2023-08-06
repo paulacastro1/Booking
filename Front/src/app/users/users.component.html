@@ -1,0 +1,27 @@
+<app-navbar></app-navbar>
+<section style="background-color: #eee;">
+  <div class="container py-5">
+    <div class="row">
+      <ng-container *ngFor="let user of users">
+        <div class="col-md-6 col-lg-4 mb-4" *ngIf="user.client_name !== 'root'">
+          <div class="card p-4" style="height: 100%;">
+            <h5 class="mb-0">{{ user.client_name}}</h5>
+            <p class="mt-3">ID Number: {{ user.client_id }}</p>
+            <p>ID Type: {{ user.id_type }}</p>
+            <p>Cellphone: {{ user.cellphone }}</p>
+            <div class="d-flex justify-content-between mb-4">
+              <div class="ms-auto text-warning">
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+              </div>
+            </div>
+            <button class="btn btn-outline-dark btn-lg px-2 text-sm">Delete</button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</section>

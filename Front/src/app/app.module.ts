@@ -16,6 +16,7 @@ import { ShowReservationsComponent } from './show-reservations/show-reservations
 import { HotelsComponent } from './hotels/hotels.component';
 import { EditHotelComponent } from './edit-hotel/edit-hotel.component';
 import { ReservationsComponent } from './reservations/reservations.component';
+import { UsersComponent } from './users/users.component';
 
 const appRoute: Routes = [
   {path:'', component: HomeComponent},
@@ -27,7 +28,8 @@ const appRoute: Routes = [
   {path: 'show-reservations', component: ShowReservationsComponent},
   {path: 'hotels', component: HotelsComponent},
   {path: 'book', component: ReservationsComponent},
-  {path: 'edit-hotel/:id', component: EditHotelComponent}
+  {path: 'edit-hotel/:id', component: EditHotelComponent},
+  {path: 'users', component: UsersComponent }
 ]
 
 @NgModule({
@@ -42,7 +44,8 @@ const appRoute: Routes = [
     ShowReservationsComponent,
     HotelsComponent,
     EditHotelComponent,
-    ReservationsComponent
+    ReservationsComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,

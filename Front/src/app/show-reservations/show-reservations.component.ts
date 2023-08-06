@@ -21,6 +21,7 @@ export class ShowReservationsComponent {
         this.hotelService.getHotelbyId(ans.hotel_id).subscribe((res: any)=>{
           ans.hotelName = res.hotel_name;
           ans.hotelImg = res.img_url;
+          ans.price = res.price;
           this.reservations.push(ans);
           console.log(this.reservations);
         })
@@ -28,18 +29,25 @@ export class ShowReservationsComponent {
     });}
       
   }
-  public deleteReservation(id:string){
-    this.service.deleteReservation(id).subscribe(
-      () => {
-        console.log('Hotel deleted successfully.');
-        window.location.reload();
-      },
-      (error) => {
-        console.error('Error deleting hotel:', error);
-      }
-    );
-    window.location.reload();
+  async deleteReservation(id:string){
+    try{
+      await this.service.deleteReservation(id).toPromise();
+
+    }catch(e){
+      console.log(e);
+      window.location.reload();
+    }
   }
-  
+
+  public getNumberOfDays(start_date: Date, end_date: Date) {
+    const startDateObj = new Date(start_date);
+    const endDateObj = new Date(end_date);
+
+    const timeDifference = endDateObj.getTime() - startDateObj.getTime();
+
+    const numberOfDays = timeDifference / (1000 * 3600 * 24);
+
+    return Math.round(numberOfDays);
+  }
 
 }

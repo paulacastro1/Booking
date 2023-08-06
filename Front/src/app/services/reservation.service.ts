@@ -15,15 +15,9 @@ export class ReservationService {
   public getReservations(){
     return this.http.get(`${this.URL}`);
   }
-  public checkReservation(data: BookingModel){
-    console.log("data:");
-    console.log(data);
-    this.http.post<any>(`${this.URL}/check-reservation`, data).subscribe((res) => {
-      console.log(res)
-    })
-  }
+  
   public deleteReservation(id: string): Observable<void>{
-    return this.http.delete<void>(`${this.URL}/${id}`);
+    return this.http.delete<any>(`${this.URL}/${id}`);
   }
   
   public saveReservation(data: ReservationModel){
@@ -32,6 +26,11 @@ export class ReservationService {
       console.log("Booked succesfully.")
     })
   }
+
+  public checkReservation(hotel_id: number, start_date: Date, end_date: Date){
+    return this.http.get(`${this.URL}/check-reservation?hotel_id=${hotel_id}&start_date=${start_date}&end_date=${end_date}`);
+  }
+  
   public listReservations(client_id: string ){
     return this.http.get(`${this.URL}/user/${client_id}`);
   }
