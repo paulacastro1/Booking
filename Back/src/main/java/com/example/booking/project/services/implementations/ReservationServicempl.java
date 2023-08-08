@@ -1,17 +1,15 @@
 package com.example.booking.project.services.implementations;
 
-import com.example.booking.project.models.entities.HotelModel;
+import com.example.booking.project.models.entities.OccupancyModel;
 import com.example.booking.project.models.entities.ReservationModel;
 import com.example.booking.project.repositories.IReservationRepository;
 import com.example.booking.project.services.interfaces.ReservationService;
-import com.example.booking.project.web.dto.BookingDTO;
-import com.example.booking.project.web.dto.HotelDTO;
 import com.example.booking.project.web.dto.ReservationDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -54,6 +52,32 @@ public class ReservationServicempl implements ReservationService {
         return bookingsDTO;
 
     }
+    public OccupancyModel getOccupancy(Long hotel_id, String start_date, String end_date) {
+        ArrayList<Object[]> resp = reservationRepository.sumOccupancy(hotel_id, start_date, end_date);
+
+
+
+
+        Object[] row = resp.get(0);
+        Integer hotelId = (Integer) row[0];
+        BigDecimal Rooms = (BigDecimal) row[1];
+        BigDecimal Guests = (BigDecimal) row[2];
+
+        if(hotelId == null){
+            return OccupancyModel.builder()
+                    .hotel_id(hotel_id)
+                    .rooms(0L)
+                    .guests(0L)
+                    .build();
+        }
+
+        return OccupancyModel.builder()
+                .hotel_id(hotelId.longValue())
+                .rooms(Rooms.longValue())
+                .guests(Guests.longValue())
+                .build();
+    }
+
     @Override
     public ArrayList<ReservationDTO> getReservation(){
         ArrayList<ReservationModel> reservations = (ArrayList<ReservationModel>)  reservationRepository.findAll();

@@ -15,5 +15,16 @@ export class UsersComponent {
     })
   }
   
+  async deleteUser(id:string){
+    this.service.deleteClient(id).subscribe(
+      () => {
+        console.log('Client deleted successfully.');
+        window.location.reload();
+      },
+      (error) => {
+        console.error('Error deleting client:', error);
+      }
+    );
+  }
   
 }
