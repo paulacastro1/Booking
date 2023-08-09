@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ClientService } from '../services/client.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -9,10 +10,16 @@ import { ClientService } from '../services/client.service';
 export class UsersComponent {
 
   public users: any;
-  constructor(private service: ClientService){
+  constructor(private service: ClientService,private router: Router){
     this.service.getClients().subscribe((user)=>{
       this.users = user;
     })
+    if(localStorage.getItem("root") == null){
+      if(localStorage.getItem("user") == null){
+        this.router.navigate(['/login']);
+      }
+      else this.router.navigate(['/find-hotel']);
+    }
   }
   
   async deleteUser(id:string){

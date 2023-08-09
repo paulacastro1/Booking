@@ -50,9 +50,8 @@ public class HotelController {
     }
 
     @DeleteMapping(path = "/{hotel_id}")
-    public void deleteHotelById(@PathVariable("hotel_id") Long hotel_id) {
-        boolean ok = this.hotelService.deleteHotel(hotel_id);
-
+    public ResponseEntity<String> deleteHotelById(@PathVariable("hotel_id") Long hotel_id) {
+        return new ResponseEntity<>(this.hotelService.deleteHotel(hotel_id), HttpStatus.OK);
     }
 
     @ExceptionHandler(CustomBadRequestException.class)

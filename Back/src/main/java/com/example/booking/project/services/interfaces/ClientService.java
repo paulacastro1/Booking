@@ -10,5 +10,5 @@ public interface ClientService {
     public ClientDTO saveClient(ClientDTO client);
     public ClientDTO getClientById(Long client_id);
     public ClientDTO updateClientById(ClientDTO request, Long client_id);
-    public Boolean deleteClient(Long client_id);
+    public String deleteClient(Long client_id);
 }

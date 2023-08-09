@@ -6,7 +6,9 @@ import com.example.booking.project.web.dto.ClientDTO;
 import com.example.booking.project.repositories.IClientRepository;
 import com.example.booking.project.services.interfaces.ClientService;
 import com.example.booking.project.web.dto.HotelDTO;
+import com.example.booking.project.web.excepction.CustomBadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.util.ArrayList;
@@ -57,13 +59,15 @@ public class ClientServicempl implements ClientService {
     }
     @Override
     public ClientDTO getClientById(Long client_id){
-        Optional<ClientModel> query = clientRepository.findById(client_id);
-        ClientDTO client = this.MapModeltoDTO(query.get());
+        ClientModel query = clientRepository.findById(client_id)
+                .orElseThrow(() -> new CustomBadRequestException("Cliente con ID: " + client_id + " No existe.", HttpStatus.BAD_REQUEST.value()));
+        ClientDTO client = this.MapModeltoDTO(query);
         return client;
     }
     @Override
     public ClientDTO updateClientById(ClientDTO request, Long client_id){
-        ClientModel client = clientRepository.findById(client_id).get();
+        ClientModel client = clientRepository.findById(client_id)
+                .orElseThrow(() -> new CustomBadRequestException("Cliente con ID: " + client_id + " No existe.", HttpStatus.BAD_REQUEST.value()));;
 
         client.setId_type(request.getId_type());
         client.setClient_name(request.getClient_name());
@@ -73,12 +77,13 @@ public class ClientServicempl implements ClientService {
         return clientDTO;
     }
     @Override
-    public Boolean deleteClient(Long client_id){
+    public String deleteClient(Long client_id){
         try {
             clientRepository.deleteById(client_id);
-            return true;
+            return "Deleted";
         }catch(Exception e){
-            return false;
+            System.out.println(e);
+            throw new CustomBadRequestException("Couldn't delete.", HttpStatus.BAD_REQUEST.value());
         }
 
     }

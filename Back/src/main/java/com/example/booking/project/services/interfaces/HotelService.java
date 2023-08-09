@@ -11,5 +11,5 @@ public interface HotelService {
     public ArrayList<HotelDTO> showAvailability(AvailabilityDTO available);
     public HotelDTO getHotelById(Long hotel_id);
     public HotelDTO updateHotelById(HotelDTO request, Long hotel_id);
-    public Boolean deleteHotel(Long hotel_id);
+    public String deleteHotel(Long hotel_id);
 }

@@ -1,48 +1,48 @@
 body {
-    background-color: #f8f9fa;
+  background-color: #f8f9fa;
 }
 
 .jumbotron {
-    background-image: url('https://img.itinari.com/pages/images/original/4ce43552-4db8-4a62-9dea-815d4f7f5451-istock-1044469006.jpg?ch=DPR&dpr=2.625&w=1600&s=38166ad44cf5afb5efc187620c91e8f8'); 
-    background-size: cover;
-    background-position: center;
-    height: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #212529;
-    text-align: center;
+  background-image: url('https://img.itinari.com/pages/images/original/4ce43552-4db8-4a62-9dea-815d4f7f5451-istock-1044469006.jpg?ch=DPR&dpr=2.625&w=1600&s=38166ad44cf5afb5efc187620c91e8f8'); 
+  background-size: cover;
+  background-position: center;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #212529;
+  text-align: center;
 }
 
 .jumbotron h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
+  font-size: 3rem;
+  margin-bottom: 20px;
 }
 
 .jumbotron p {
-    font-size: 1.5rem;
-    max-width: 600px;
-    margin: 0 auto;
+  font-size: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .btn-primary {
-    font-size: 1.2rem;
-    padding: 10px 30px;
-    margin-top: 20px;
-    background-color: #ffffff;
-    border-color: #757575;
-    color: #757575;
+  font-size: 1.2rem;
+  padding: 10px 30px;
+  margin-top: 20px;
+  background-color: #ffffff;
+  border-color: #757575;
+  color: #757575;
 }
 
 .feature-box {
-    padding: 30px;
-    border-radius: 5px;
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  padding: 30px;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 .feature-box i {
-    font-size: 3rem;
-    margin-bottom: 20px;
+  font-size: 3rem;
+  margin-bottom: 20px;
 }

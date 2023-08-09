@@ -57,13 +57,9 @@ public class ReservationController {
     }
 
     @DeleteMapping(path = "/{reservation_id}")
-    public String deleteReservationById(@PathVariable("reservation_id") Long reservation_id) {
-        boolean ok = this.reservationService.deleteReservation(reservation_id);
-        if (ok) {
-            return ("Reservation " + reservation_id + " deleted.");
-        } else {
-            return ("Couldn't complete deletion.");
-        }
+    public ResponseEntity<String> deleteReservationById(@PathVariable("reservation_id") Long reservation_id) {
+        return new ResponseEntity<>(this.reservationService.deleteReservation(reservation_id), HttpStatus.OK);
+
     }
 
     @ExceptionHandler(CustomBadRequestException.class)

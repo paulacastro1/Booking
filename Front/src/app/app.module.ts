@@ -19,17 +19,17 @@ import { ReservationsComponent } from './reservations/reservations.component';
 import { UsersComponent } from './users/users.component';
 
 const appRoute: Routes = [
-  {path:'', component: HomeComponent},
+  {path:'', component: HomeComponent}, 
   {path:'app-navbar', component: NavbarComponent},
   {path:'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'add-hotel', component: AddHotelsComponent},
-  {path: 'find-hotel', component: FindHotelsComponent},
-  {path: 'show-reservations', component: ShowReservationsComponent},
-  {path: 'hotels', component: HotelsComponent},
-  {path: 'book', component: ReservationsComponent},
-  {path: 'edit-hotel/:id', component: EditHotelComponent},
-  {path: 'users', component: UsersComponent }
+  {path: 'add-hotel', component: AddHotelsComponent}, //solo root
+  {path: 'find-hotel', component: FindHotelsComponent}, //user loggeado
+  {path: 'show-reservations', component: ShowReservationsComponent}, //user loggeado
+  {path: 'hotels', component: HotelsComponent}, //solo root
+  {path: 'book', component: ReservationsComponent}, //user loggeado
+  {path: 'edit-hotel/:id', component: EditHotelComponent}, //solo root
+  {path: 'users', component: UsersComponent } //solo root
 ]
 
 @NgModule({

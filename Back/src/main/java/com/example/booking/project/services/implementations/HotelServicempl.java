@@ -7,7 +7,9 @@ import com.example.booking.project.web.dto.AvailabilityDTO;
 import com.example.booking.project.web.dto.HotelDTO;
 import com.example.booking.project.repositories.IHotelRepository;
 import com.example.booking.project.services.interfaces.HotelService;
+import com.example.booking.project.web.excepction.CustomBadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -47,13 +49,16 @@ public class HotelServicempl implements HotelService {
 
     @Override
     public ArrayList<HotelDTO> showAvailability(AvailabilityDTO available) {
-        ArrayList<HotelModel> availableHotelModel = hotelRepository.findAvailableHotels(available.getStart_date(), available.getEnd_date(), available.getDesired_rooms(), available.getDesired_guests(), available.getMin_price(), available.getMax_price());
-        ArrayList<HotelDTO> availableHotelDTO = new ArrayList<>();
-        for(int i=0; i< availableHotelModel.size(); i++){
-            availableHotelDTO.add(this.MapModeltoDTO(availableHotelModel.get(i)));
+        try{
+            ArrayList<HotelModel> availableHotelModel = hotelRepository.findAvailableHotels(available.getStart_date(), available.getEnd_date(), available.getDesired_rooms(), available.getDesired_guests(), available.getMin_price(), available.getMax_price());
+            ArrayList<HotelDTO> availableHotelDTO = new ArrayList<>();
+            for(int i=0; i< availableHotelModel.size(); i++){
+                availableHotelDTO.add(this.MapModeltoDTO(availableHotelModel.get(i)));
+            }
+            return availableHotelDTO;
+        } catch(Exception e){
+            throw new CustomBadRequestException("Error, intentelo mas tarde.", HttpStatus.NOT_FOUND.value());
         }
-        return availableHotelDTO;
-
     }
 
     @Override
@@ -73,8 +78,9 @@ public class HotelServicempl implements HotelService {
     }
     @Override
     public HotelDTO getHotelById(Long hotel_id){
-        Optional<HotelModel> query = hotelRepository.findById(hotel_id);
-        HotelDTO hotel = this.MapModeltoDTO(query.get());
+        HotelModel query = hotelRepository.findById(hotel_id)
+                .orElseThrow(() -> new CustomBadRequestException("Hotel con ID: " + hotel_id + " No existe.", HttpStatus.BAD_REQUEST.value()));
+        HotelDTO hotel = this.MapModeltoDTO(query);
         return hotel;
     }
     @Override
@@ -94,17 +100,14 @@ public class HotelServicempl implements HotelService {
 
     }
     @Override
-    public Boolean deleteHotel(Long hotel_id){
+    public String deleteHotel(Long hotel_id){
         try {
             hotelRepository.deleteById(hotel_id);
             System.out.println("eliminado");
-        return true;
+            return "Deleted";
         }catch(Exception e){
             System.out.println(e);
-            System.out.println("no se puede");
-            return false;
+            throw new CustomBadRequestException("Couldn't delete.", HttpStatus.BAD_REQUEST.value());
         }
-
     }
-
 }

@@ -14,6 +14,12 @@ export class FindHotelsComponent {
   selectedPriceRange: string;
 
   constructor(private service: HotelService, private router: Router){
+    if(localStorage.getItem("user") == null){
+      if(localStorage.getItem("root") == null){
+        this.router.navigate(['/login']);
+      }
+      else this.router.navigate(['/hotels']);
+    }
     this.availability = new AvailabilityModel;
     this.selectedPriceRange = '';
     this.getHotels();

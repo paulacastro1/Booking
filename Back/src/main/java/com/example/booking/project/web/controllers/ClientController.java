@@ -46,14 +46,8 @@ public class ClientController {
     }
 
     @DeleteMapping(path = "/{client_id}")
-    public String deleteClientById(@PathVariable("client_id") Long client_id){
-        boolean ok = this.clientService.deleteClient(client_id);
-        if(ok){
-            return ("User " + client_id + " deleted.");
-        }
-        else{
-            return ("Couldn't complete deletion.");
-        }
+    public ResponseEntity<String> deleteClientById(@PathVariable("client_id") Long client_id){
+        return new ResponseEntity<>(this.clientService.deleteClient(client_id), HttpStatus.OK);
     }
 
     @ExceptionHandler(CustomBadRequestException.class)

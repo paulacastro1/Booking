@@ -12,19 +12,31 @@ export class LoginComponent {
  
   username: string = ''; 
   password: string = '';
+  errormessage: string = '';
 
-  constructor(private authService: AuthenticationService, private router: Router){}
-
-  async onSubmit(): Promise<void>{
-    console.log("hola");
-    if(await this.authService.login(this.username, this.password)){
-      console.log("You're logged in.")
-      let root_user = localStorage.getItem('root');
-      if (root_user) this.router.navigate(['/hotels']);
+  constructor(private authService: AuthenticationService, private router: Router){
+    if(localStorage.getItem("root") == null){
+      if(localStorage.getItem("user") == null){
+        this.router.navigate(['/login']);
+      }
       else this.router.navigate(['/find-hotel']);
     }
-    else{
-      alert("Incorrect username or password. Please try again.")
+    else this.router.navigate(['/hotels']);
+  }
+
+  async onSubmit(): Promise<void>{
+    try{
+      let res = await this.authService.login(this.username, this.password)
+      if(res){
+        let root_user = localStorage.getItem('root');
+        if (root_user) this.router.navigate(['/hotels']);
+        else this.router.navigate(['/find-hotel']);
+      }
+      
+    } catch (e) {
+      
+      this.errormessage = "Incorrect username or password. Please try again.";
+      
     }
   }
 }

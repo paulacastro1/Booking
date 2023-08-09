@@ -12,7 +12,7 @@
           <p class="card-text">Departure Date: {{reservation.end_date}}</p>
           <p class="card-text">Number of Guests: {{reservation.no_guests}}</p>
           <p class="card-text">Reserved rooms: {{reservation.reserved_rooms}}</p>
-          <p class="card-text">Total cost: {{reservation.price * getNumberOfDays(reservation.start_date, reservation.end_date)}}</p>
+          <p class="card-text">Total cost: {{reservation.price * getNumberOfDays(reservation.start_date, reservation.end_date) * reservation.reserved_rooms}}</p>
           <div class="d-flex align-items-center text-sm">
           <a href="/book?hotel_id={{reservation.hotel_id}}&start_date={{reservation.start_date}}&end_date={{reservation.end_date}}&reserved_rooms={{reservation.reserved_rooms}}&no_guests={{reservation.no_guests}}" class="btn btn-outline-dark btn-lg px-2 mr-2">
             <div class="text-sm">Manage Reservation</div>

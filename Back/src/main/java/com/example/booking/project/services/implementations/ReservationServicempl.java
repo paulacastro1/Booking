@@ -5,8 +5,10 @@ import com.example.booking.project.models.entities.ReservationModel;
 import com.example.booking.project.repositories.IReservationRepository;
 import com.example.booking.project.services.interfaces.ReservationService;
 import com.example.booking.project.web.dto.ReservationDTO;
+import com.example.booking.project.web.excepction.CustomBadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -96,14 +98,16 @@ public class ReservationServicempl implements ReservationService {
 
     @Override
     public ReservationDTO getReservationById(Long reservation_id){
-        Optional<ReservationModel> query = reservationRepository.findById(reservation_id);
-        ReservationDTO reservation = this.MapModeltoDTO(query.get());
+        ReservationModel query = reservationRepository.findById(reservation_id)
+                .orElseThrow(() -> new CustomBadRequestException("Reserva con ID: " + reservation_id + " No existe.", HttpStatus.BAD_REQUEST.value()));
+        ReservationDTO reservation = this.MapModeltoDTO(query);
         return reservation;
     }
 
     @Override
     public ReservationDTO updateReservationById(ReservationDTO request, Long reservation_id){
-        ReservationModel reservation = reservationRepository.findById(reservation_id).get();
+        ReservationModel reservation = reservationRepository.findById(reservation_id)
+                .orElseThrow(() -> new CustomBadRequestException("Reserva con ID: " + reservation_id + " No existe.", HttpStatus.BAD_REQUEST.value()));
 
         reservation.setStart_date(request.getStart_date());
         reservation.setStart_date(request.getEnd_date());
@@ -116,17 +120,14 @@ public class ReservationServicempl implements ReservationService {
     }
 
     @Override
-    public Boolean deleteReservation(Long reservation_id){
+    public String deleteReservation(Long reservation_id){
         try {
-            System.out.println(("reserva eliminada"));
             reservationRepository.deleteById(reservation_id);
-            return true;
+            return "Deleted";
         }catch(Exception e){
             System.out.println(e);
-            System.out.println("no se puede borrar reserva");
-            return false;
+            throw new CustomBadRequestException("Couldn't delete.", HttpStatus.BAD_REQUEST.value());
         }
-
     }
 }
 

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { ReservationService } from '../services/reservation.service';
 import { HotelService } from '../services/hotel.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-show-reservations',
+  selector: 'app-show-reservations',  
   templateUrl: './show-reservations.component.html',
   styleUrls: ['./show-reservations.component.css']
 })
@@ -11,7 +12,7 @@ export class ShowReservationsComponent {
   public reservations: any = [];
   public aux: any;
 
-  constructor(private service: ReservationService, private hotelService: HotelService){
+  constructor(private service: ReservationService, private hotelService: HotelService,private router: Router){
     let client = localStorage.getItem('user');
     if(client){
       this.service.listReservations(client).subscribe((reservation)=>{
@@ -27,6 +28,12 @@ export class ShowReservationsComponent {
         })
       })   
     });}
+    if(localStorage.getItem("root") == null){
+      if(localStorage.getItem("user") == null){
+        this.router.navigate(['/login']);
+      }
+      else this.router.navigate(['/find-hotel']);
+    }
       
   }
   async deleteReservation(id:string){

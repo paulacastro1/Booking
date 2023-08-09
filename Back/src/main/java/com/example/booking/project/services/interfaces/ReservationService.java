@@ -12,5 +12,5 @@ public interface ReservationService {
     public OccupancyModel getOccupancy(Long hotel_id, String start_date, String end_date);
     public ReservationDTO getReservationById(Long reservation_id);
     public ReservationDTO updateReservationById(ReservationDTO request, Long reservation_id);
-    public Boolean deleteReservation(Long reservation_id);
+    public String deleteReservation(Long reservation_id);
 }

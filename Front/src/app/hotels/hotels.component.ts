@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { HotelService } from 'src/app/services/hotel.service'
 
 @Component({
@@ -9,11 +10,21 @@ import { HotelService } from 'src/app/services/hotel.service'
 export class HotelsComponent {
   public hotels: any;
 
-  constructor(private service: HotelService){
+  constructor(
+    private service: HotelService,
+    private router: Router
+    ){
     this.service.getHotels().subscribe((hotel)=>{
       this.hotels = hotel;
       console.log(this.hotels);
     });
+    if(localStorage.getItem("root") == null){
+      if(localStorage.getItem("user") == null){
+        this.router.navigate(['/login']);
+      }
+      else this.router.navigate(['/find-hotel']);
+    }
+    
   }
   public deleteHotelById(id: string) {
     this.service.deleteHotelById(id).subscribe(
