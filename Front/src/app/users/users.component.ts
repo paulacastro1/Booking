@@ -14,12 +14,6 @@ export class UsersComponent {
     this.service.getClients().subscribe((user)=>{
       this.users = user;
     })
-    if(localStorage.getItem("root") == null){
-      if(localStorage.getItem("user") == null){
-        this.router.navigate(['/login']);
-      }
-      else this.router.navigate(['/find-hotel']);
-    }
   }
   
   async deleteUser(id:string){

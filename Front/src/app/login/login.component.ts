@@ -15,13 +15,7 @@ export class LoginComponent {
   errormessage: string = '';
 
   constructor(private authService: AuthenticationService, private router: Router){
-    if(localStorage.getItem("root") == null){
-      if(localStorage.getItem("user") == null){
-        this.router.navigate(['/login']);
-      }
-      else this.router.navigate(['/find-hotel']);
-    }
-    else this.router.navigate(['/hotels']);
+    
   }
 
   async onSubmit(): Promise<void>{

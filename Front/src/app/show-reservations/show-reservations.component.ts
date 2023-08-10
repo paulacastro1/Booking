@@ -28,12 +28,6 @@ export class ShowReservationsComponent {
         })
       })   
     });}
-    if(localStorage.getItem("root") == null){
-      if(localStorage.getItem("user") == null){
-        this.router.navigate(['/login']);
-      }
-      else this.router.navigate(['/find-hotel']);
-    }
       
   }
   async deleteReservation(id:string){

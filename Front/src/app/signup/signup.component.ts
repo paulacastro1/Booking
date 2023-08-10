@@ -13,13 +13,7 @@ export class SignupComponent {
 
   constructor(private authService: AuthenticationService, private router: Router){
     this.user = new UserModel();
-    if(localStorage.getItem("root") == null){
-      if(localStorage.getItem("user") == null){
-        this.router.navigate(['/login']);
-      }
-      else this.router.navigate(['/find-hotel']);
-    }
-    else this.router.navigate(['/hotels']);
+
   }
 
   onSubmit(): void{

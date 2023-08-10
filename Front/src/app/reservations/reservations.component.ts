@@ -20,12 +20,7 @@ export class ReservationsComponent  {
   hotelName: string | undefined;
   flag: string | undefined;
   constructor(private router: Router, private service: ReservationService, private route: ActivatedRoute, private hotelService: HotelService, private clientService: ClientService) { 
-    if(localStorage.getItem("root") == null){
-      if(localStorage.getItem("user") == null){
-        this.router.navigate(['/login']);
-      }
-      else this.router.navigate(['/find-hotel']);
-    }
+    
     
     this.reservation = new ReservationModel;
     this.hotel = new HotelModel;
